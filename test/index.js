@@ -15,7 +15,11 @@ httpMixin({
     http: params => {
         return new Promise((resolve, reject) => {
 
-            params = $.extend({dataType: 'json', processData: false}, params);
+            params = $.extend({
+                dataType: 'json',
+                processData: false,
+                contentType: 'application/vnd.api+json'
+            }, params);
 
             $.ajax(params).then((data, textStatus, jqXHR) => {
                 resolve({data: data});

@@ -236,9 +236,11 @@ httpMixin({
     http: params => {
         return new Promise((resolve, reject) => {
 
-            params = $.extend({dataType: 'json', processData: false}, params);
-
-            $.ajax(params).then((data, textStatus, jqXHR) => {
+            $.ajax($.extend({
+                dataType: 'json',
+                processData: false,
+                contentType: 'application/vnd.api+json'
+            }, params)).then((data, textStatus, jqXHR) => {
                 resolve({data: data});
             }, jqXHR => {
                 reject(jqXHR);
