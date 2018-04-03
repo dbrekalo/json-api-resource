@@ -23,7 +23,7 @@ Models can be altered and easily synchronized with server (with use of http mixi
 ### Features
 * query and alter dataset attribute and relation values
 * normalize data to custom schema format
-* manipulate and create resources with extendable model and collection utilities
+* manipulate and create resources with extend-able model and collection utilities
 
 ---
 
@@ -283,16 +283,16 @@ Collection.getFromApi('article').then(function(collection) {
 
 ## Installation
 
-Library can be used in browser or node server environment.
+Library can be used in browser and node server environment.
 
 ```js
 // install via npm
 npm install json-api-resource --save
 
-// if you use bundler
+// if using bundler or node server
 var resource = require('json-api-resource');
 var Model = resource.Model;
-var Collection = resource.Model;
+var Collection = resource.Collection;
 
 // or just using browser globals
 var resource = window.jsonApiResource;

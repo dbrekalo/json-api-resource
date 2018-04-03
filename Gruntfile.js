@@ -49,7 +49,7 @@ module.exports = function(grunt) {
             file: 'README.md',
             dest: 'index.html',
             title: 'JSON api resource',
-            description: 'Backbone Model and Collection extensions for working with json:api formatted datasets and server responses.',
+            description: 'Query, transform and persist datasets based on JSON API specification.',
             canonicalUrl: 'http://dbrekalo.github.io/json-api-resource/',
             githubUrl: 'https://github.com/dbrekalo/json-api-resource',
             userRepositories: {
