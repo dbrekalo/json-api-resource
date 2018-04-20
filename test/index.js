@@ -105,6 +105,10 @@ describe('Creating models and collection from dataset', () => {
             model.setRelationship('tags', [{type: 'tag', id: '1'}]);
             assert.deepEqual(model.get('tags.id'), ['1']);
 
+            model.setId(undefined);
+            assert.equal(model.get('id'), undefined);
+            assert.isTrue(model.isNew());
+
         });
 
     });
