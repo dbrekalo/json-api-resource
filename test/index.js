@@ -181,6 +181,18 @@ describe('Creating models and collection from dataset', () => {
 
     });
 
+    it('Model and collection classes will report type', () => {
+
+        const ModelType = Model.extend({type: 'tag'});
+        const CollectionType = Collection.extend({Model: ModelType});
+
+        assert.equal(ModelType.getType(), 'tag');
+        assert.equal(CollectionType.getType(), 'tag');
+        assert.isUndefined(Model.getType());
+        assert.isUndefined(Collection.getType());
+
+    });
+
 });
 
 describe('Normalizing to schema', () => {
