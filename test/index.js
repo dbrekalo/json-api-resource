@@ -529,6 +529,8 @@ describe('Generating model url', function() {
                 },
                 page: {},
                 sort: '-title',
+                undefinedKey: undefined,
+                nullKey: null,
                 include: ['tags', 'tags.id']
             }
         }), apiUrl + 'article/2?filter[title]=test&filter[published]=true&sort=-title&include=tags,tags.id');
