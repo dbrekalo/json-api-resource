@@ -255,12 +255,15 @@ describe('Creating models from server data', () => {
 
     it('model can be created from api call', () => {
 
-        return Model.getFromApi({type: 'article', id: '1'}, model => {
-
-            assert.isTrue(model instanceof Model);
-            assert.equal(model.getType(), 'article');
-            assert.strictEqual(model.get('id'), '1');
-
+        return Promise.all([
+            Model.getFromApi({type: 'article', id: '1'}),
+            Model.getFromApi({url: apiUrl + 'article/1'})
+        ]).then(models => {
+            models.forEach(model => {
+                assert.isTrue(model instanceof Model);
+                assert.equal(model.getType(), 'article');
+                assert.strictEqual(model.get('id'), '1');
+            });
         });
 
     });
@@ -269,7 +272,7 @@ describe('Creating models from server data', () => {
 
         return Promise.all([
             Model.extend({type: 'tag'}).getFromApi({id: '1'}),
-            Model.extend({type: 'tag'}).getFromApi('1'),
+            Model.extend({type: 'tag'}).getFromApi('1')
         ]).then(models => {
             models.forEach(model => {
                 assert.equal(model.getType(), 'tag');
