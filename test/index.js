@@ -58,6 +58,7 @@ describe('Creating models and collection from dataset', () => {
                 assert.isTrue(model instanceof Model);
                 assert.isDefined(model.cid);
                 assert.equal(model.getType(), 'article');
+                assert.equal(model.getId(), '1');
             });
 
         });
@@ -71,6 +72,7 @@ describe('Creating models and collection from dataset', () => {
             var model = Model.create(data);
 
             assert.equal(model.get('id'), '1');
+            assert.equal(model.get('type'), 'article');
             assert.equal(model.get('title'), 'Article title 1');
             assert.equal(model.get('author.id'), '1');
             assert.equal(model.get('author.email'), 'test.user1@gmail.com');
@@ -173,7 +175,9 @@ describe('Creating models and collection from dataset', () => {
             assert.equal(collection.add(collection.getModel('1')).length, collectionLength);
             assert.equal(collection.add(new Model()).length, collectionLength + 1);
 
-            ['forEach', 'map', 'filter', 'reduce', 'slice'].forEach(method => {
+            assert.isArray(collection.toArray());
+
+            ['forEach', 'map', 'filter', 'reduce', 'slice', 'find'].forEach(method => {
                 assert.isDefined(collection[method]);
             });
 
@@ -574,6 +578,26 @@ describe('Creating collections from server data', function() {
                 assert.isDefined(articleModel.get('id'));
                 assert.isDefined(articleModel.get('author.id'));
             });
+            done();
+
+        });
+
+    });
+
+    it('collection can be indexed for faster query', (done) => {
+
+        Collection.getFromApi({
+            type: 'article',
+            buildModelMap: true
+        }, function(collection) {
+
+            for (var i = 0; i < 300; i++) {
+                var id = String(1500 + i);
+                var articleModel = collection.getModel(id, 'article');
+                assert.instanceOf(articleModel, Model);
+                assert.equal(articleModel.getId(), id);
+            }
+
             done();
 
         });

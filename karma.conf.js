@@ -39,7 +39,10 @@ module.exports = function(config) {
     },
 
     client: {
-      useIframe: false
+      useIframe: false,
+      mocha: {
+        timeout : 15000
+      }
     },
 
     plugins: [

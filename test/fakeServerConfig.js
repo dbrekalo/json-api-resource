@@ -15,7 +15,7 @@ module.exports = {
             },
             data: function(random) {
 
-                return _.chain(_.range(1, 9)).map(function(index) {
+                return _.chain(_.range(1, 2000)).map(function(index) {
                     return {
                         type: 'article',
                         id: String(index),
@@ -27,13 +27,16 @@ module.exports = {
                         relationships: {
                             author: {data: {id: '1', type: 'user'}},
                             publisher: {data: null},
-                            relatedArticles: {data: [{id: String(index), type: 'article'}]},
-                            comments: {data: []},
+                            relatedArticles: {
+                                data: [
+                                    {id: String(index), type: 'article'}
+                                ]
+                            },
                             tags: {
                                 data: [
-                                    {id: String(index), type: 'tag'},
-                                    {id: String(index + 1), type: 'tag'},
-                                    {id: String(index + 2), type: 'tag'}
+                                    {id: String((index - 1) % 20 + 1), type: 'tag'},
+                                    {id: String((index - 1) % 20 + 2), type: 'tag'},
+                                    {id: String((index - 1) % 20 + 3), type: 'tag'}
                                 ]
                             }
                         }
@@ -43,7 +46,7 @@ module.exports = {
             }
         },
         tag: {
-            data: _.chain(_.range(1, 20)).map(function(index) {
+            data: _.chain(_.range(1, 25)).map(function(index) {
                 return {
                     type: 'tag',
                     id: String(index),
