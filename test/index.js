@@ -165,8 +165,8 @@ describe('Creating models and collection from dataset', () => {
             assert.isUndefined(collection.findWhere({id: 'unknown'}));
 
             assert.isArray(collection.get('id'));
-            assert.deepEqual(collection.get('id').slice(0,1), ['1']);
-            assert.deepEqual(collection.get(['id']).slice(0,1), [{id: '1'}]);
+            assert.deepEqual(collection.get('id').slice(0, 1), ['1']);
+            assert.deepEqual(collection.get(['id']).slice(0, 1), [{id: '1'}]);
 
             assert.equal(collection.getModel('1').get('id'), '1');
             assert.isUndefined(collection.getModel('unknownId'));
@@ -387,7 +387,6 @@ describe('Saving json api model', function() {
 
     });
 
-
     it('saves hasMany relation', (done) => {
 
         Model.getFromApi({type: 'article', id: '1'}, model => {
@@ -535,7 +534,7 @@ describe('Generating model url', function() {
 
         assert.equal(Model.url({type: 'article'}), apiUrl + 'article');
         assert.equal(Model.url({type: 'article', id: '2'}), apiUrl + 'article/2');
-        assert.equal(Model.extend({type: 'article'}).url({id:'2'}), apiUrl + 'article/2');
+        assert.equal(Model.extend({type: 'article'}).url({id: '2'}), apiUrl + 'article/2');
 
     });
 

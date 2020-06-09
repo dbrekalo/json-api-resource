@@ -1,11 +1,10 @@
 # JSON api resource
 
 [![Build Status](https://travis-ci.org/dbrekalo/json-api-resource.svg?branch=master)](https://travis-ci.org/dbrekalo/json-api-resource)
-[![Coverage Status](https://coveralls.io/repos/github/dbrekalo/json-api-resource/badge.svg?branch=master)](https://coveralls.io/github/dbrekalo/json-api-resource?branch=master)
 [![NPM Status](https://img.shields.io/npm/v/json-api-resource.svg)](https://www.npmjs.com/package/json-api-resource)
 
 Query and transform datasets based on JSON API specification.
-Lightweight library that runs both in browser and server environment. Has no dependencies and weighs less than 3KB.
+Lightweight library that runs both in browser and server environment. Weighs less than 3KB.
 
 [Visit documentation site](http://dbrekalo.github.io/json-api-resource/).
 

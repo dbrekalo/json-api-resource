@@ -9,16 +9,13 @@
     "url": "https://github.com/dbrekalo/json-api-resource"
   },
   "scripts": {
-    "watch": "npm run build && grunt watch",
-    "build": "grunt build && npm run build:lib && npm run build:lib:withHttp",
-    "build:lib": "webpack -p --output-library='jsonApiResource' lib/index.js dist/jsonApiResource.js",
-    "build:lib:withHttp": "webpack -p --output-library='jsonApiResource' lib/indexWithHttp.js dist/jsonApiResourceWithHttp.js",
-    "watch:test": "node ./node_modules/karma/bin/karma start --browsers ChromeHeadless",
-    "test": "node ./node_modules/karma/bin/karma start --single-run --browsers ChromeHeadless",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "bump:patch": "grunt bump:patch",
-    "bump:minor": "grunt bump:minor",
-    "bump:major": "grunt bump:major"
+    "lint": "eslint lib/** test/** --color",
+    "build": "node docs-build.js && npm run build:lib && npm run build:lib:withHttp",
+    "build:lib": "webpack -p --output-library='jsonApiResource' lib/index.js -o dist/jsonApiResource.js",
+    "build:lib:withHttp": "webpack -p --output-library='jsonApiResource' lib/indexWithHttp.js -o dist/jsonApiResourceWithHttp.js",
+    "test": "npm run lint && npm run test:lib",
+    "test:lib": "BABEL_ENV=test karma start --single-run --browsers ChromeHeadless",
+    "watch:test:lib": "BABEL_ENV=test karma start --browsers ChromeHeadless"
   },
   "keywords": [
     "json-api",
@@ -30,26 +27,26 @@
   "devDependencies": {
     "attire": "^1.3.2",
     "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-standard": "^4.0.0",
     "fake-json-api-server": "^1.2.0",
-    "grunt": "^1.0.1",
-    "grunt-bump": "^0.8.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-eslint": "^20.1.0",
     "istanbul-instrumenter-loader": "^3.0.0",
     "jquery": "^3.2.1",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage-istanbul-reporter": "^1.3.0",
-    "karma-mocha": "^1.3.0",
+    "karma": "^5.0.9",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
+    "karma-mocha": "^2.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
-    "karma-webpack": "^3.0.0",
-    "load-grunt-tasks": "^3.5.2",
-    "mocha": "^5.0.0",
-    "mocha-loader": "^1.1.3",
-    "webpack": "^3.6.0"
+    "karma-webpack": "^4.0.2",
+    "load-grunt-tasks": "^5.1.0",
+    "mocha": "^7.2.0",
+    "mocha-loader": "^5.0.0",
+    "underscore": "^1.10.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
-  "dependencies": {}
+  "dependencies": {
+    "type-factory": "^3.1.0"
+  }
 }
