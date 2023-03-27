@@ -555,12 +555,26 @@ describe('Generating model url', function() {
                 nullKey: null,
                 include: ['tags', 'tags.id']
             }
-        }), apiUrl + 'article/2?filter[title]=test&filter[published]=true&sort=-title&include=tags,tags.id');
+        }), apiUrl + 'article/2?filter[title]=test&filter[published]=true&sort=-title&include=tags%2Ctags.id');
+
+        assert.equal(Model.url({
+            type: 'article',
+            query: {
+                filter: {
+                    title: 'test # test',
+                }
+            }
+        }), apiUrl + 'article?filter[title]=test%20%23%20test');
 
         assert.equal(Model.url({
             type: 'article',
             query: 'filter[title]=test'
         }), apiUrl + 'article?filter[title]=test');
+
+        assert.equal(Model.url({
+            type: 'article',
+            query: 'filter[title]=test # test'
+        }), apiUrl + 'article?filter[title]=test # test');
 
     });
 
